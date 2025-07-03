@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brawl Stars info</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #1b1b1b, #2c2c2c);
+      color: #fff;
+    }
+
+    header {
+      background-color: #ffcc00;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .titulo-com-imagem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .titulo-com-imagem img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #2d2d2d;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    section:nth-child(even) {
+      background-color: #333;
+    }
+
+    h2 {
+      color: #ffcc00;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      font-size: 0.9em;
+    }
+
+    .botao-avancar {
+      display: block;
+      margin: 40px auto 0;
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    /* BOTÃO HAMBÚRGUER */
+    .hamburger {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 24px;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /*Tres barrinha do botao*/
+    .hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #aaa120; 
+    border-radius: 2px;
+    transition: 0.4s;
+    }
+
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* NAV MENU FULLSCREEN */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav.open {
+      height: 100vh;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      font-size: 1.8em;
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffffff;
+    }
+
+    /* Layout desktop: menu horizontal */
+    @media (min-width: 768px) {
+      nav ul {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="titulo-com-imagem">
+      <img src="stardrop.png" alt="Imagem" />
+      <h1>Brawl Stars info</h1>
+    </div>
+
+    <!-- Botão hamburguer -->
+    <div id="btnToggleNav" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menu -->
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastrar.html">Cadastrar</a></li>
+        <li><a href="entrar.html">Entrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Sobre o Jogo</h2>
+    <p>
+      Brawl Stars é um jogo de combate em arena tipo battle royale da Supercell, com modos variados e personagens únicos.
+    </p>
+  </section>
+
+  <section>
+    <h2>Personagens</h2>
+    <p>
+      Cada brawler tem habilidades especiais. De Shelly a Spike, cada um oferece uma jogabilidade diferente.
+    </p>
+  </section>
+
+  <section>
+    <h2>Dicas e Estratégias</h2>
+    <p>
+      Domine o controle de mapa, saiba quando usar o super e jogue em equipe. E evite Edgar sem time!
+    </p>
+  </section>
+
+  <button onclick="window.location.href='brawlers.html'" class="botao-avancar">
+    Veja os 10 Brawlers
+  </button>
+
+  <footer>
+    &copy; Desenvolvedor Henrique Cavalini: Brawlers favoritos Frank e Grom
+  </footer>
+
+  <script>
+    const btnToggle = document.getElementById('btnToggleNav');
+    const navbar = document.getElementById('navbar');
+
+    btnToggle.addEventListener('click', () => {
+      navbar.classList.toggle('open');
+      btnToggle.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

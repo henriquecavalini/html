@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: black;
+}
+
+.container {
+  width: 350px;
+}
+
+.auth-box {
+  background: #FFD700;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-box h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  background-color: black;
+}
+
+.auth-box p {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.auth-box a {
+  color: white;
+  text-decoration: none;
+}
+
+.auth-box a:hover {
+  text-decoration: underline;
+}
+</style>
+<body>
+<div class="container">
+  <div class="box auth-box">
+    <h2>Entrar</h2>
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="E‑mail" required>
+      <input type="password" name="senha" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem conta? <a href="cadastrar.html">Cadastre-se</a></p>
+  </div>
+</div>
+</body>
+</html>
