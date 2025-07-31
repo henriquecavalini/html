@@ -1,375 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <title>Top 10 Brawlers Mais Jogados</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #FFD700;
-            margin: 0;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Top 10 Brawlers Mais Jogados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        h1 {
-            text-align: center;
-            color: #FFD700;
-            margin-bottom: 40px;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #000000, #1c1c1c);
+      color: #FFD700;
+      padding: 20px;
+    }
 
-        .brawler {
-            background-color: #FFD700;
-            color: #000;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 700px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: transform 0.2s ease;
-        }
+    h1 {
+      text-align: center;
+      color: #FFD700;
+      margin-bottom: 40px;
+      font-size: 2em;
+    }
 
-        .brawler:hover {
-            transform: scale(1.02);
-        }
+    .brawler {
+      background-color: #FFD700;
+      color: #000;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: transform 0.3s ease;
+    }
 
-        .brawler img {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 3px solid #000;
-        }
+    .brawler:hover {
+      transform: scale(1.03);
+    }
 
-        .brawler-info {
-            flex: 1;
-        }
+    .brawler img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 3px solid #000;
+    }
 
-        .brawler-info h2 {
-            margin: 0 0 10px;
-            color: #000;
-        }
+    .brawler-info h2 {
+      margin-bottom: 10px;
+      color: #000;
+    }
 
-        .brawler-info p {
-            margin: 0;
-            color: #222;
-        }
+    .brawler-info p {
+      margin: 0;
+      color: #222;
+    }
 
-        .botao-voltar {
-            background: linear-gradient(135deg, #4CAF50, #81C784);
-            border: none;
-            color: white;
-            padding: 14px 28px;
-            font-size: 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: block;
-            margin: 30px auto 0;
-            text-align: center;
-            text-decoration: none;
-        }
+    .botao-voltar {
+      display: block;
+      background: linear-gradient(to right, #4CAF50, #81C784);
+      color: white;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      margin: 40px auto;
+      width: fit-content;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
 
-        .botao-voltar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
+    .botao-voltar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
 
-        /* Header removido, só posiciona botão */
-        header {
-            position: relative;
-            height: 50px;
-        }
+    .hamburger {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      width: 30px;
+      height: 24px;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      cursor: pointer;
+    }
 
-        /* Botão hamburger */
-        #btnToggleNav {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            width: 30px;
-            height: 25px;
-            cursor: pointer;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .hamburger span {
+      display: block;
+      height: 4px;
+      background-color: #FFD700;
+      border-radius: 2px;
+      transition: 0.4s;
+    }
 
-        #btnToggleNav span {
-            display: block;
-            height: 4px;
-            background-color: #FFD700; /* linhas pretas */
-            border-radius: 2px;
-            transition: 0.4s;
-        }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
 
-        /* animação hamburger para X */
-        #btnToggleNav.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        #btnToggleNav.open span:nth-child(2) {
-            opacity: 0;
-        }
-        #btnToggleNav.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
 
-        /* Menu fullscreen */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
 
-        nav.open {
-            transform: translateY(0);
-        }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+    }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
+    nav.open {
+      height: 100vh;
+      opacity: 1;
+    }
 
-        nav ul li {
-            margin: 15px 0;
-        }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-        nav ul li a {
-            font-size: 24px;
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid #FFD700;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
+    nav ul li a {
+      font-size: 22px;
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #FFD700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
 
+    nav ul li a:hover {
+      background-color: #FFD700;
+      color: #000;
+    }
 
+    @media (max-width: 600px) {
+      .brawler {
+        flex-direction: column;
+        text-align: center;
+      }
 
-        nav ul li a:hover {
-            background-color: #FFD700;
-            color: #000;
-        }
-
-        /* Em desktop, mostra nav normal e esconde botão */
-       /* @media(min-width: 601px) {
-            #btnToggleNav {
-                display: none;
-            }
-
-            nav {
-                position: static;
-                background: none;
-                transform: none !important;
-                height: auto;
-                display: flex !important;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
-            }
-        }*/
-            nav ul {
-                display: flex;
-                gap: 20px;
-            }
-
-            /*nav ul li a {
-                font-size: 16px;
-                border: none;
-                padding: 10px 15px;
-                color: #FFD700;
-            }
-
-            nav ul li a:hover {
-                background-color: #555;
-                color: #FFD700;
-            }*/
-            .hamburger {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 24px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 15;
-            }
-
-            .hamburger span {
-            display: block;
-            width: 100%;
-            height: 4px;
-            background-color: #FFD700; /* amarelo */
-            border-radius: 2px;
-            transition: 0.4s;
-            }
-
-
-            /* opcional: animação para quando abrir o menu */
-
-            .hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .hamburger.open span:nth-child(2) {
-            opacity: 0;
-            }
-
-            .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-            }
-                            /*Transicao menu*/
-            nav {
-            transition: height 0.4s ease, opacity 0.4s ease;
-            opacity: 0;
-            }
-
-            nav.open {
-            height: 100vh;
-            opacity: 1;
-            }
-
-            /* Animação para seções */
-            section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-            }
-
-            section.visible {
-            opacity: 1;
-            transform: translateY(0);
-            }
-
-            /* Botão com feedback visual */
-            .botao-avancar:active {
-            transform: scale(0.97);
-            background-color: #e6c200;
-            }
-
-    </style>
+      .brawler img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <button id="btnToggleNav" class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-        </button>
-        <nav id="navbar">
-        <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="cadastrar.html">Cadastrar</a></li>
-            <li><a href="entrar.html">Entrar</a></li>
-        </ul>
-        </nav>
-    </header>
+  <button id="btnToggleNav" class="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-    <h1>Top 10 Brawlers Mais Jogados em 2025</h1>
+  <nav id="navbar">
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="cadastrar.html">Cadastrar</a></li>
+      <li><a href="entrar.html">Entrar</a></li>
+    </ul>
+  </nav>
 
-    <div class="brawler">
-        <img src="el primo.png" alt="El Primo" />
-        <div class="brawler-info">
-            <h2>1. El Primo</h2>
-            <p>El Primo é um tanque corpo a corpo com ataques poderosos e muita vida. Seu super o permite saltar sobre os inimigos.</p>
-        </div>
+  <h1>🌟 Top 10 Brawlers Mais Jogados em 2025</h1>
+
+  <!-- Repita esse bloco para cada brawler -->
+  <div class="brawler">
+    <img src="el primo.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="kenji.png" alt="Kenji" />
-        <div class="brawler-info">
-            <h2>2. Kenji</h2>
-            <p>Kenji é ágil e tem ataques rápidos. Seu estilo permite avançar e recuar com segurança.</p>
-        </div>
+    <img src="piper.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="piper.png" alt="Piper" />
-        <div class="brawler-info">
-            <h2>3. Piper</h2>
-            <p>Atiradora de longo alcance, causa mais dano quanto mais distante estiver do alvo.</p>
-        </div>
+    <img src="mortis.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="tick.png" alt="Tick" />
-        <div class="brawler-info">
-            <h2>4. Tick</h2>
-            <p>Controla áreas com minas explosivas. Ótimo para forçar os inimigos a recuar.</p>
-        </div>
+    <img src="surge.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="mortis.png" alt="Mortis" />
-        <div class="brawler-info">
-            <h2>5. Mortis</h2>
-            <p>Rápido e sorrateiro, Mortis ataca deslizando e foge antes de ser punido.</p>
-        </div>
+    <img src="spike.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="surge.png" alt="Surge" />
-        <div class="brawler-info">
-            <h2>6. Surge</h2>
-            <p>Surge evolui durante a partida, ganhando habilidades novas a cada super usado.</p>
-        </div>
+    <img src="el primo.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="spike.png" alt="Spike" />
-        <div class="brawler-info">
-            <h2>7. Spike</h2>
-            <p>Seus espinhos explodem causando dano em área — ótimo para enfraquecer vários inimigos ao mesmo tempo.</p>
-        </div>
+    <img src="tick.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="colt.png" alt="Colt" />
-        <div class="brawler-info">
-            <h2>8. Colt</h2>
-            <p>Colt dispara rajadas precisas e potentes. Se for bem posicionado, é mortal.</p>
-        </div>
+    <img src="kenji.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="amber.png" alt="Amber" />
-        <div class="brawler-info">
-            <h2>9. Amber</h2>
-            <p>Amber usa fogo contínuo e controla zonas com seu super inflamável.</p>
-        </div>
+    <img src="griff.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
-
+  </div>
     <div class="brawler">
-        <img src="griff.png" alt="Griff" />
-        <div class="brawler-info">
-            <h2>10. Griff</h2>
-            <p>Lança moedas cortantes e sua super explode com retorno, causando muito dano.</p>
-        </div>
+    <img src="colt.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
     </div>
+  </div>
+    <div class="brawler">
+    <img src="amber.png" alt="El Primo">
+    <div class="brawler-info">
+      <h2>1. El Primo</h2>
+      <p>Tanque corpo a corpo com ataques poderosos. O super salta sobre inimigos causando dano em área.</p>
+    </div>
+  </div>
+  <!-- Demais brawlers... (mantenha a mesma estrutura) -->
 
-    <a href="skins.html" class="botao-voltar">Próxima página</a>
+  <a href="skins.html" class="botao-voltar">🔄 Próxima página</a>
 
-    <script>
+  <script>
     const btnToggle = document.getElementById('btnToggleNav');
     const navbar = document.getElementById('navbar');
 
@@ -377,24 +282,6 @@
       navbar.classList.toggle('open');
       btnToggle.classList.toggle('open');
     });
-    </script>
-    <script>
-  // Animação de fade-up ao rolar para a seção
-  const sections = document.querySelectorAll('section');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
-
-  sections.forEach(section => observer.observe(section));
   </script>
-
-
 </body>
 </html>
